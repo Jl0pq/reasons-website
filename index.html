@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reasons | ver. 3.7 Тихий Паноптикон</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      font-family: sans-serif;
+    }
+
+    .wrapper {
+      width: 100%;
+      background: url('assets/bg.jpg') no-repeat center top;
+      background-size: contain;
+      aspect-ratio: 768 / 1572;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-game, .logo-patch, .slogan, .section-title, .section-next {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .logo-game { top: 1%; width: 250px; left: 2%; transform: none; }
+    .logo-patch { top: 16%; width: 50%; }
+    .slogan { top: 25%; width: 40%; }
+    .section-title { top: 36%; width: 39%; }
+    .section-next { top: 67%; width: 39%; }
+
+    .downloads {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .store-column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .downloads a img {
+      width: 150px;
+    }
+
+    .character-buttons {
+      position: absolute;
+      top: 46%;
+      left: 24%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .character-buttons img {
+      width: 140px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .character {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 840px;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .description {
+      position: absolute;
+      top: 44%;
+      left: 80%;
+      transform: translateX(-50%);
+      height: 400px;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .insight-toggle {
+      position: absolute;
+      top: 42%;
+      left: 69%;
+      transform: translateX(-50%);
+      width: 99px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    @font-face {
+      font-family: 'Source Han Serif CN';
+      src: url('assets/SourceHanSerifCN-Regular.otf') format('opentype');
+    }
+
+    .insight-label {
+      position: absolute;
+      top: 43%;
+      left: 73%;
+      transform: translateX(-50%);
+      font-family: 'Source Han Serif CN', serif;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .carousel {
+      position: absolute;
+      top: 72%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .carousel-container {
+      width: 100%;
+    }
+
+    .carousel-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .carousel-slide {
+      width: 1050px;
+      opacity: 0.4;
+      transform: scale(0.85);
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      flex-shrink: 0;
+      margin: 0 10px;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+    }
+
+    .nav-arrow {
+      width: 50px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .nav-arrow.prev {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .nav-arrow.next {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .dots {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .dot {
+      width: 23px;
+      height: 23px;
+      cursor: pointer;
+    }
+
+    .follow-section {
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    .follow-title img {
+      width: 590px;
+      pointer-events: none;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .social-icons img {
+      width: 150px;
+      cursor: pointer;
+    }
+
+    .footer {
+      background-color: #000;
+      padding: 40px 20px;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
+
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 15px;
+    }
+
+    .footer-logos img {
+      height: 40px;
+    }
+
+    .footer-text {
+      margin: 0;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <img src="assets/logo_reasons.png" class="logo-game" />
+    <img src="assets/logo_patch.png" class="logo-patch" />
+    <img src="assets/slogan-title.png" class="slogan" />
+    <img src="assets/t3.png" class="section-title" />
+    <img src="assets/5t.png" class="section-next" />
+
+    <div class="downloads">
+      <!-- <div class="store-column">
+        <a href="#"><img src="assets/ios.png" /></a>
+        <a href="#"><img src="assets/android.png" /></a>
+      </div> -->
+      <a href="https://reasonsru.itch.io/reasons-beta" target="_blank">
+        <img src="assets/pc.png" />
+        </a>
+      <a href="https://youtu.be/MyczmFeuVhw" target="_blank">
+        <img src="assets/pv.png" />
+    
+        </a>
+    </div>
+
+    <div class="character-buttons">
+      <img id="btn1" src="assets/h1c.png" onclick="showCharacter(1)" />
+      <img id="btn2" src="assets/h2.png" onclick="showCharacter(2)" />
+      <img id="btn3" src="assets/h3.png" onclick="showCharacter(3)" />
+    </div>
+
+    <img id="insightBtn" src="assets/d1.png" class="insight-toggle" onclick="toggleInsight()" />
+    <p class="insight-label">Нажмите, чтобы увидеть облик</p>
+
+    <img id="character" src="assets/1-1.png" class="character" />
+    <img id="description" src="assets/1d.png" class="description" />
+
+
+    <div class="carousel">
+      <div class="carousel-container">
+        <div class="carousel-inner">
+          <div class="carousel-nav">
+            <img class="nav-arrow prev" src="assets/pre.png" onclick="changeSlide(-1)" />
+            <div class="carousel-track" id="carouselTrack">
+              <img class="carousel-slide" src="assets/1.png" />
+              <img class="carousel-slide" src="assets/2.png" />
+              <img class="carousel-slide active" src="assets/3.png" />
+              <img class="carousel-slide" src="assets/4.png" />
+              <img class="carousel-slide" src="assets/5.png" />
+              <img class="carousel-slide" src="assets/6.png" />
+            </div>
+            <img class="nav-arrow next" src="assets/next.png" onclick="changeSlide(1)" />
+          </div>
+          <div class="dots" id="dots"></div>
+        </div>
+        <!-- Follow -->
+  <div class="follow-section">
+    <div class="follow-title">
+      <img src="assets/6t.png" alt="Follow Us" />
+    </div>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@YourChannel" target="_blank"><img src="assets/YouTube.png" alt="YouTube" /></a>
+      <a href="https://discord.com/invite/YourInvite" target="_blank"><img src="assets/Discord.png" alt="Discord" /></a>
+      <a href="https://www.tiktok.com/@YourHandle" target="_blank"><img src="assets/TikTok.png" alt="TikTok" /></a>
+      <a href="https://t.me/reasonsofficialru" target="_blank"><img src="assets/Telegram.png" alt="TikTok" /></a>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-logos">
+      <img src="assets/logo_reasons.png" alt="Logo 1" />
+      <img src="assets/footer-logo2.png" alt="Logo 2" />
+    </div>
+    <p class="footer-text">Это фанатское издание. Все права принадлежат исходным авторам.</p>
+  </div>
+
+<script>
+  let currentCharacter = 1;
+  let insightMode = false;
+
+  const characters = [
+  {
+    c: '1-1.png',
+    d: '1d.png',
+    insight: { normal: '1-1.png', alt: '1-2.png' },
+    btn: { normal: 'h1.png', active: 'h1c.png' } // ← исправлено!
+  },
+  {
+    c: '2-1.png',
+    d: '2d.png',
+    insight: { normal: '2-1.png', alt: '2-2.png' },
+    btn: { normal: 'h2.png', active: 'h2c.png' }
+  },
+  {
+    c: '3-1.png',
+    d: '3d.png',
+    insight: { normal: '3-1.png', alt: '3-2.png' },
+    btn: { normal: 'h3.png', active: 'h3c.png' }
+  }
+];
+
+
+  function showCharacter(index) {
+    currentCharacter = index;
+    insightMode = false;
+
+    const char = characters[index - 1];
+
+    document.getElementById("character").src = "assets/" + char.c;
+    document.getElementById("description").src = "assets/" + char.d;
+    document.getElementById("insightBtn").src = "assets/d1.png";
+
+    // Обновить иконки персонажей
+    characters.forEach((char, i) => {
+      const btnId = "btn" + (i + 1);
+      const imgSrc = (i + 1 === index) ? char.btn.active : char.btn.normal;
+      document.getElementById(btnId).src = "assets/" + imgSrc;
+    });
+  }
+
+  function toggleInsight() {
+    insightMode = !insightMode;
+    const char = characters[currentCharacter - 1];
+    document.getElementById("character").src = "assets/" + (insightMode ? char.insight.alt : char.insight.normal);
+    document.getElementById("insightBtn").src = insightMode ? "assets/d1c.png" : "assets/d1.png";
+  }
+
+  const track = document.getElementById("carouselTrack");
+  const slides = Array.from(track.children);
+  const dotsContainer = document.getElementById("dots");
+  let currentIndex = 2;
+
+  slides.forEach((slide, i) => {
+    const dot = document.createElement("img");
+    dot.classList.add("dot");
+    dot.src = i === currentIndex ? "assets/xc.png" : "assets/xn.png";
+    dot.addEventListener("click", () => showSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function updateCarousel() {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === currentIndex);
+      dotsContainer.children[i].src = i === currentIndex ? "assets/xc.png" : "assets/xn.png";
+    });
+
+    const slideWidth = slides[0].offsetWidth + 20;
+    const offset = slideWidth * currentIndex;
+    track.style.transform = `translateX(calc(50% - ${offset + slides[currentIndex].offsetWidth / 2}px))`;
+  }
+
+  function showSlide(index) {
+    currentIndex = index;
+    updateCarousel();
+  }
+
+  function changeSlide(dir) {
+    currentIndex = (currentIndex + dir + slides.length) % slides.length;
+    updateCarousel();
+  }
+
+  setInterval(() => changeSlide(1), 5000);
+  window.addEventListener('load', updateCarousel);
+</script>
+
+
+</body>
+</html>
