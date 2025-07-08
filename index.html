@@ -262,7 +262,7 @@
         <a href="#"><img src="assets/ios.png" /></a>
         <a href="#"><img src="assets/android.png" /></a>
       </div> -->
-      <a href="https://reasonsru.itch.io/reasons-beta" target="_blank">
+      <a href="https://github.com/Jl0pq/novella-updates/releases/download/3.7.0.8/Reasons-beta-3.7.0.8-win.zip" target="_blank">
         <img src="assets/pc.png" />
         </a>
       <a href="https://youtu.be/MyczmFeuVhw" target="_blank">
@@ -380,7 +380,7 @@
   const track = document.getElementById("carouselTrack");
   const slides = Array.from(track.children);
   const dotsContainer = document.getElementById("dots");
-  let currentIndex = 2;
+  let currentIndex = 0;
 
   slides.forEach((slide, i) => {
     const dot = document.createElement("img");
@@ -411,7 +411,7 @@
     updateCarousel();
   }
 
-  setInterval(() => changeSlide(1), 5000);
+  setInterval(() => changeSlide(1), 7000);
   window.addEventListener('load', updateCarousel);
 </script>
 
